@@ -4,7 +4,6 @@ import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { NextIntlClientProvider } from "next-intl";
-import Tabs from "@/components/homepage/Tabs";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -43,7 +42,7 @@ export const metadata: Metadata = {
   title: "Eeviriyi",
 };
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -52,14 +51,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} ${notoSansSC.variable} antialiased`}>
         <ThemeProvider attribute="class">
-          <NextIntlClientProvider>
-            <div className="mx-auto grid max-w-5xl grid-cols-4 gap-16 p-16">
-              <div className="col-span-1">
-                <Tabs />
-              </div>
-              <div className="col-span-3">{children}</div>
-            </div>
-          </NextIntlClientProvider>
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>

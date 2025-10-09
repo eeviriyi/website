@@ -1,4 +1,4 @@
-import PostsList from "@/components/mdx/PostsList";
+import PostsList from "@/components/homepage/PostsList";
 import { getPostsByDate } from "@/lib/posts/PostsUtils";
 
 export default async function PostsPage() {

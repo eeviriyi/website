@@ -37,7 +37,6 @@ interface GlassControlsProps {
   onBgUrlChange: (url: string) => void;
 }
 
-// 定义全局 window 对象的类型扩展
 declare global {
   interface Window {
     glassConfig?: GlassConfig;
@@ -384,7 +383,9 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
           width: 0,
         }}
       >
+        <title>Glass distortion filter</title>
         <defs>
+          {/** biome-ignore lint/correctness/useUniqueElementIds: <1> */}
           <filter height="100%" id="glass-distortion" width="100%" x="0%" y="0%">
             <feTurbulence
               baseFrequency={`${config.noiseFrequency} ${config.noiseFrequency}`}

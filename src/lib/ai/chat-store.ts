@@ -1,7 +1,6 @@
 import type { UIMessage } from "ai";
 import { eq } from "drizzle-orm";
 import { cookies } from "next/headers";
-import type { Locale } from "@/i18n/locale";
 import { db } from "@/lib/db/db";
 import { historys } from "@/lib/db/schema/historys";
 

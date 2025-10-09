@@ -3,7 +3,6 @@
 import { useChat } from "@ai-sdk/react";
 import type { UIMessage } from "ai";
 import { DefaultChatTransport } from "ai";
-import { CornerDownLeft, Forward, Send, SendHorizontal, SendIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -126,7 +125,6 @@ export default function Chat({ id, initialMessages }: { id?: string | undefined;
             type="submit"
           >
             <p>{t("send")}</p>
-            <CornerDownLeft size={14} />
           </button>
         </div>
       </form>

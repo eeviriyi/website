@@ -188,6 +188,23 @@
   body {
     @apply bg-background text-foreground font-sans;
     letter-spacing: var(--tracking-normal);
+    
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+    text-box: trim-both cap alphabetic;
+
+    transition: 
+      background-color var(--transition-speed) ease,
+      color var(--transition-speed) ease;
   }
 }
 
+/* html { font-size: 100%; } */
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+    scrollbar-width: none;
+}

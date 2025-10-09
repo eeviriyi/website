@@ -1,9 +1,12 @@
 "use client";
 
+import { LayoutGroup, motion } from "framer-motion";
 import Link from "next/link";
 import { useSearchParams, useSelectedLayoutSegment } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+
+const UNDERLINE_ID = "underline";
 
 export default function Tabs() {
   const segment = useSelectedLayoutSegment();
@@ -29,22 +32,32 @@ export default function Tabs() {
   }, [searchParams]);
 
   return (
-    <nav className="flex flex-col gap-2 font-medium text-xl">
-      {tabs.map((tab) => {
-        const href = tab.id === "homepage" && storedChatId ? `/homepage?id=${storedChatId}` : `/${tab.id}`;
+    <LayoutGroup>
+      <nav className="flex flex-col gap-2 font-medium text-xl">
+        {tabs.map((tab) => {
+          const isSelected = segment === tab.id;
+          const href = tab.id === "homepage" && storedChatId ? `/homepage?id=${storedChatId}` : `/${tab.id}`;
 
-        return (
-          <Link
-            className={`p-3 ${
-              segment === tab.id ? "bg-primary text-primary-foreground hover:bg-primary/90" : "hover:bg-accent hover:text-accent-foreground"
-            }`}
-            href={href}
-            key={tab.id}
-          >
-            {tab.name}
-          </Link>
-        );
-      })}
-    </nav>
+          return (
+            <Link
+              className={`relative p-3 ${
+                segment === tab.id ? "bg-primary text-primary-foreground hover:bg-primary/90" : "hover:bg-accent hover:text-accent-foreground"
+              }`}
+              href={href}
+              key={tab.id}
+            >
+              {tab.name}
+              {isSelected && (
+                <motion.div
+                  className="absolute inset-0 z-[-1] rounded-md bg-primary"
+                  layoutId={UNDERLINE_ID}
+                  transition={{ damping: 30, stiffness: 300, type: "spring" }}
+                />
+              )}
+            </Link>
+          );
+        })}
+      </nav>
+    </LayoutGroup>
   );
 }

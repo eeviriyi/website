@@ -41,7 +41,7 @@ export default function Poem() {
     <section className="w-full border bg-card text-card-foreground">
       {poem ? (
         <div className="p-8 text-center">
-          <p className="mb-4 text-xl leading-relaxed" style={{ fontFamily: '"LXGW WenKai", cursive' }}>
+          <p className="mb-4 text-xl leading-relaxed" style={{ fontFamily: "LXGW WenKai" }}>
             「{poem.data.content}」
           </p>
           <div className="text-right text-muted-foreground text-sm">
@@ -52,7 +52,7 @@ export default function Poem() {
         </div>
       ) : (
         <div className="animate-pulse p-8 text-center">
-          <p>正在加载诗词...</p>
+          <p>Loading poem...</p>
         </div>
       )}
     </section>
