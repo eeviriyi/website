@@ -1,0 +1,1 @@
+ALTER TABLE "schedule" RENAME TO "events";

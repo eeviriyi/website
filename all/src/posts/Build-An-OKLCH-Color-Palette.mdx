@@ -1,0 +1,61 @@
+import SigmoidFunction from './components/SigmoidFunction'
+import GaussianCurve from './components/GaussianCurve'
+import OKLCHColorPalette from './components/OKLCHColorPalette'
+
+export const metadata = {
+    title: 'Build An OKLCH Color Palette',
+    date: "2025-09-25",
+    tags: ['Design', 'Color'],
+    summary: "Learn how to create a harmonious and accessible color palette using the OKLCH color space, featuring interactive components for lightness and chroma adjustments."
+}
+
+# Build An OKLCH Color Palette
+
+Tired of dull, inconsistent color schemes? It’s time to move beyond sRGB and explore OKLCH! This modern, perceptual color space is a game-changer for design systems because it separates Lightness (L), Chroma (C), and Hue (H) in a way that truly matches human perception. This makes creating harmonious and accessible palettes much simpler.
+
+## Lightness: The Sigmoid Function Approach
+
+The first step in a great palette is controlling its lightness ramp. Instead of a boring linear progression, we use a Sigmoid Function to map the lightness values.
+
+Lightness=f(step)
+
+This S-shaped curve is key. It allows the lightness to change slowly in the extreme light and dark ends (the tails of the S-curve) and more rapidly in the middle. This non-linear transition ensures that all the colors in your palette—from the lightest pastel to the darkest shadow—are visually distinct and evenly distributed, resulting in a more sophisticated and useful scale.
+
+<SigmoidFunction 
+  width={600} 
+  height={300} 
+  leftInitial={0.95} 
+  rightInitial={0.38} 
+/>
+
+## Chroma: The Gaussian Curve Strategy
+
+While a consistent hue is often desired, a flat chroma (colorfulness) across all lightness steps looks unnatural. A common design practice is to have colors be most vibrant in the middle of the lightness range and less saturated (lower chroma) at the very light and very dark ends.
+
+We achieve this with a Gaussian Curve (or "bell curve").
+
+Chroma=g(Lightness)
+By setting the peak of the curve near the mid-point of the lightness scale (e.g., L=0.5), we ensure that highly saturated colors are reserved for the middle shades. The resulting palette feels vibrant where it should be and avoids the muddy or washed-out look that happens when high chroma is applied to extremely dark or light colors.
+
+<GaussianCurve 
+  width={600} 
+  height={300} 
+  lightness={0.5} 
+  hue={150} 
+  percentage={0.8} 
+  minChroma={0.1} 
+/>
+
+## OKLCH Color Palette Generator
+
+By combining the perceptual accuracy of the OKLCH color space with the mathematical elegance of the Sigmoid and Gaussian functions, we can generate a perfectly balanced color palette. You simply set your desired Hue (H), and the generator handles the complex, perceptual work of creating a nine-step scale that is visually smooth and consistently vibrant.
+
+Ready to build your next-level palette? Give the generator a try!
+
+<OKLCHColorPalette 
+  initialHue={150} 
+  paletteSize={9} 
+  width={600}
+  height={500}
+/>
+

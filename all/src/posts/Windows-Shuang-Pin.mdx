@@ -1,0 +1,17 @@
+export const metadata = {
+    title: 'Windows 注册表添加双拼输入法',
+    date: "2025-07-08",
+    tags: ['Windows']
+}
+
+# Windows 注册表添加双拼输入法
+
+编码方式为 UTF-16LE
+
+## 小鹤双拼
+
+``` registry
+Windows Registry Editor Version 5.00
+[HKEY_CURRENT_USER\Software\Microsoft\InputMethod\Settings\CHS]
+"UserDefinedDoublePinyinScheme0"="小鹤双拼*2*^*iuvdjhcwfg^xmlnpbksqszxkrltvyovt"
+```
