@@ -311,7 +311,6 @@ export default function GaussianCurve({
           height={height}
           ref={svgRef}
           style={{ cursor: isDraggingPeak || isDraggingMinChroma ? "grabbing" : "default" }}
-          title="OKLCH Chroma Gaussian Distribution Chart"
           width={width}
         >
           {/* 背景网格 */}
