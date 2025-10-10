@@ -53,9 +53,9 @@ export function EventCalendar({ events, range }: { events: Event[]; range: { sta
           return (
             <button className="flex cursor-pointer flex-col items-center" key={dayKey} onClick={() => handleDayClick(day)} type="button">
               <div
-                className={`flex h-13 w-13 items-center justify-center rounded-full transition-colors ${isSelected
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                    : "bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground"
+                className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors md:h-13 md:w-13 ${isSelected
+                  ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                  : "bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground"
                   }`}
               >
                 {formattedDate}

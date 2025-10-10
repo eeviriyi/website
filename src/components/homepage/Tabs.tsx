@@ -33,14 +33,14 @@ export default function Tabs() {
 
   return (
     <LayoutGroup>
-      <nav className="flex flex-row gap-3 font-medium text-xl md:flex-col">
+      <nav className="flex flex-row overflow-x-auto font-medium text-xl md:flex-col md:gap-3">
         {tabs.map((tab) => {
           const isSelected = segment === tab.id;
           const href = tab.id === "homepage" && storedChatId ? `/homepage?id=${storedChatId}` : `/${tab.id}`;
 
           return (
             <Link
-              className={`relative px-5 py-3 pr-13 pl-5 ${segment === tab.id ? "bg-primary text-primary-foreground hover:bg-primary/90" : "hover:bg-accent hover:text-accent-foreground"
+              className={`relative px-5 py-3 pr-5 pl-5 md:pr-13 ${segment === tab.id ? "bg-primary text-primary-foreground hover:bg-primary/90" : "hover:bg-accent hover:text-accent-foreground"
                 }`}
               href={href}
               key={tab.id}

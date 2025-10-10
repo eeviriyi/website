@@ -64,7 +64,7 @@ export default function Chat({ id, initialMessages }: { id?: string | undefined;
       <div className="max-h-120 space-y-4 overflow-y-auto scroll-smooth p-4 pt-0" ref={scrollContainerRef}>
         {messages.map((message) => (
           <div
-            className={`flex max-w-[75%] flex-col whitespace-pre-wrap break-words ${message.role === "user" ? "ml-auto items-end" : "items-start"}`}
+            className={`flex flex-col whitespace-pre-wrap break-words md:max-w-[75%] ${message.role === "user" ? "ml-auto items-end" : "items-start"}`}
             key={message.id}
           >
             {message.parts.map((part, index) => {
