@@ -25,7 +25,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
   }
 
   return (
-    <div className="flex w-full flex-col gap-6">
+    <div className="flex flex-1 flex-col gap-6">
       <Settings />
       <Suspense fallback={<ChatSkeleton />}>
         <ChatWrapper id={id} />

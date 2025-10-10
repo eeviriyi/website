@@ -12,4 +12,7 @@
     "*.css": "tailwindcss",
     "*.scss": "tailwindcss",
   },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
 }

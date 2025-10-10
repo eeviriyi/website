@@ -53,11 +53,10 @@ export function EventCalendar({ events, range }: { events: Event[]; range: { sta
           return (
             <button className="flex cursor-pointer flex-col items-center" key={dayKey} onClick={() => handleDayClick(day)} type="button">
               <div
-                className={`flex h-13 w-13 items-center justify-center rounded-full transition-colors ${
-                  isSelected
+                className={`flex h-13 w-13 items-center justify-center rounded-full transition-colors ${isSelected
                     ? "bg-primary text-primary-foreground hover:bg-primary/90"
                     : "bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground"
-                }`}
+                  }`}
               >
                 {formattedDate}
               </div>
@@ -90,7 +89,7 @@ export function EventCalendar({ events, range }: { events: Event[]; range: { sta
         {selectedDayEvents ? (
           <ul>
             {selectedDayEvents.map((event) => (
-              <li className="border-b" key={event.id}>
+              <li className="border-b p-3" key={event.id}>
                 <p className="font-medium">{event.title}</p>
                 <p className="text-muted-foreground">{event.description}</p>
                 <button className="text-destructive text-sm" onClick={() => handleDelete(event.id)} type="button">

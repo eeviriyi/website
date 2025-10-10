@@ -38,7 +38,7 @@ export default function Poem() {
   }, []);
 
   return (
-    <section className="w-full border bg-card text-card-foreground">
+    <section className="flex-1 border bg-card text-card-foreground">
       {poem ? (
         <div className="p-8 text-center">
           <p className="mb-4 text-xl leading-relaxed" style={{ fontFamily: "LXGW WenKai" }}>
