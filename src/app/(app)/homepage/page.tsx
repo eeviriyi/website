@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import Chat from "@/components/homepage/Chat.tsx";
 import ChatSkeleton from "@/components/homepage/ChatSkeleton.tsx";
+
 import { EventCalendar } from "@/components/homepage/EventCalendar.tsx";
 import Poem from "@/components/homepage/Poem.tsx";
 import Settings from "@/components/homepage/Settings.tsx";
@@ -28,6 +29,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
       </Suspense>
       <Poem />
       <EventCalendar events={events} range={{ end, start }} />
+      
     </div>
   );
 }

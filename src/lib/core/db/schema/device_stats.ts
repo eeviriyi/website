@@ -1,13 +1,12 @@
-import { bigint, boolean, integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
+import { boolean, integer, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 export const deviceStats = pgTable("device_stats", {
   batteryLevel: integer("battery_level").notNull(),
-  clientTimestamp: bigint("client_timestamp", { mode: "number" }).notNull(),
-  deviceId: text("device_id").notNull(),
-  id: serial("id").primaryKey(),
+  deviceName: text("device_name").notNull().primaryKey(),
   isCharging: boolean("is_charging").notNull(),
-  screenTimeSec: integer("screen_time_sec").notNull(),
-  serverTimestamp: timestamp("server_timestamp", { withTimezone: true }).defaultNow().notNull(),
+  isScreenOn: boolean("is_screen_on").notNull(),
+  timestamp: timestamp("timestamp").notNull().default(sql`now()`),
 });
 
 export type NewDeviceStat = typeof deviceStats.$inferInsert;

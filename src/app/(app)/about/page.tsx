@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { PhysicsPlayground } from "@/components/about/PhysicsPlayground.tsx";
+import DeviceStats from "@/components/homepage/DeviceStats.tsx";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         [/admin][end_admin_session]
       </p>
       <PhysicsPlayground />
+      <DeviceStats />
     </div >
   );
 }
