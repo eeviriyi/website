@@ -4,7 +4,7 @@ import { Languages, Moon, Sun } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { useEffect, useState, useTransition } from "react";
-import { getUserLocale, type Locale, setUserLocale } from "@/i18n/locale";
+import { getUserLocale, type Locale, setUserLocale } from "@/lib/core/i18n/locale.ts";
 
 export default function Settings() {
   const t = useTranslations("Settings");

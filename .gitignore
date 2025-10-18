@@ -41,3 +41,8 @@ yarn-error.log*
 next-env.d.ts
 
 compression-polyfill.ts
+
+/temp
+
+# content-collections
+.content-collections

@@ -2,9 +2,14 @@ import { google } from "@ai-sdk/google";
 import { convertToModelMessages, createIdGenerator, stepCountIs, streamText, tool, type UIMessage, validateUIMessages } from "ai";
 import type { NextRequest } from "next/server";
 import { z } from "zod";
-import { loadChat, saveChat } from "@/lib/ai/chat-store";
-import { findRelevantContent } from "@/lib/ai/embedding";
-import { sendNotification } from "@/lib/ai/send-notification";
+import { findRelevantContent } from "@/lib/components/chat/embedding.ts";
+import { loadChat, saveChat } from "@/lib/components/chat/repository.ts";
+import { sendNotification } from "@/lib/services/send-notification.ts";
+
+const requestSchema = z.object({
+  id: z.string().min(1, "id is required"),
+  message: z.unknown(),
+});
 
 const systemPrompt = `
 Primary Persona & Goal
@@ -42,12 +47,36 @@ sendNotification	To alert the admin Eeviriyi when a user query cannot be resolve
 export const maxDuration = 30;
 
 export async function POST(req: NextRequest) {
-  const { message, id }: { message: UIMessage[]; id: string } = await req.json();
+  const parseResult = requestSchema.safeParse(await req.json());
+
+  if (!parseResult.success) {
+    const errorTree = z.treeifyError(parseResult.error);
+    return Response.json(
+      {
+        details: errorTree,
+        error: "Invalid request body",
+      },
+      { status: 400 },
+    );
+  }
+
+  const { id, message } = parseResult.data;
 
   const previousMessages = await loadChat(id);
-  const validatedMessages = await validateUIMessages({
-    messages: [...previousMessages, message],
-  });
+  let validatedMessages: UIMessage[];
+
+  try {
+    validatedMessages = await validateUIMessages({
+      messages: [...previousMessages, message as UIMessage],
+    });
+  } catch {
+    return Response.json(
+      {
+        error: "Invalid message payload",
+      },
+      { status: 400 },
+    );
+  }
 
   const result = streamText({
     messages: convertToModelMessages(validatedMessages),

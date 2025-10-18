@@ -2,7 +2,7 @@
 
 import { format } from "date-fns";
 import type React from "react";
-import { createEventAction } from "@/lib/event/actions";
+import { createEventAction } from "../../lib/components/eventCalendar/actions.ts";
 
 interface AddEventModalProps {
   isOpen: boolean;

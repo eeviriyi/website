@@ -5,7 +5,12 @@ import type { UIMessage } from "ai";
 import { DefaultChatTransport } from "ai";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar.tsx";
+
+type ChatRequestBody = {
+  id: string;
+  message: UIMessage;
+};
 
 export default function Chat({ id, initialMessages }: { id?: string | undefined; initialMessages?: UIMessage[] } = {}) {
   const t = useTranslations("Chat");
@@ -18,7 +23,19 @@ export default function Chat({ id, initialMessages }: { id?: string | undefined;
     transport: new DefaultChatTransport({
       api: "/api/chat",
       prepareSendMessagesRequest({ messages, id }) {
-        return { body: { id, message: messages[messages.length - 1] } };
+        const message = messages.at(-1);
+
+        if (!message) {
+          throw new Error("无法发送空消息");
+        }
+
+        if (!id) {
+          throw new Error("缺少会话标识");
+        }
+
+        const body: ChatRequestBody = { id, message };
+
+        return { body };
       },
     }),
   });
@@ -53,7 +70,7 @@ export default function Chat({ id, initialMessages }: { id?: string | undefined;
     <div className="w-full border bg-card text-card-foreground">
       <div className="flex items-center gap-2 p-4">
         <Avatar className="size-10">
-          <AvatarImage src="avatar.png" />
+          <AvatarImage src="/images/avatar.png" />
           <AvatarFallback>E</AvatarFallback>
         </Avatar>
         <div className="flex flex-col">

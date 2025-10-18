@@ -1,7 +1,5 @@
-import PostsList from "@/components/homepage/PostsList";
-import { getPostsByDate } from "@/lib/posts/PostsUtils";
+import AllPosts from "@/components/posts/AllPosts.tsx";
 
-export default async function PostsPage() {
-  const posts = await getPostsByDate();
-  return <PostsList posts={posts} />;
+export default function Posts() {
+  return <AllPosts />;
 }

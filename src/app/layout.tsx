@@ -49,7 +49,7 @@ export default function Layout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${notoSansSC.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${notoSansSC.variable} font-sans antialiased`}>
         <ThemeProvider attribute="class">
           <NextIntlClientProvider>{children}</NextIntlClientProvider>
         </ThemeProvider>
