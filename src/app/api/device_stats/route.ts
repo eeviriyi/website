@@ -1,4 +1,4 @@
-import { getRecentDeviceStats } from "@/lib/components/device_stats/repository";
+import { getRecentDeviceStats } from "@/lib/components/device_stats/repository.ts";
 
 export async function GET() {
   try {

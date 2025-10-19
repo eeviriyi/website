@@ -1,17 +1,16 @@
 import type { NextRequest } from "next/server";
-import { addDeviceStat } from "@/lib/components/device_stats/repository";
+import { addDeviceStat } from "@/lib/components/device_stats/repository.ts";
 import type { NewDeviceStat } from "@/lib/core/db/schema/device_stats.ts";
 
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
 
-    const newStat: NewDeviceStat = {
+    const newStat: Omit<NewDeviceStat, "timestamp"> = {
       batteryLevel: data.batteryLevel,
       deviceName: data.deviceName,
       isCharging: data.isCharging,
       isScreenOn: data.isScreenOn,
-      ...(data.timestamp ? { timestamp: data.timestamp } : {}),
     };
 
     const inserted = await addDeviceStat(newStat);

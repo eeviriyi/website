@@ -1,13 +1,16 @@
-import { gte } from "drizzle-orm";
+import { gte, sql } from "drizzle-orm";
 import { db } from "@/lib/core/db/client.ts";
 import { deviceStats, type NewDeviceStat } from "@/lib/core/db/schema/device_stats.ts";
 
-export async function addDeviceStat(stat: Omit<NewDeviceStat, "id">) {
+export async function addDeviceStat(stat: Omit<NewDeviceStat, "timestamp">) {
   const [inserted] = await db
     .insert(deviceStats)
     .values(stat)
     .onConflictDoUpdate({
-      set: stat,
+      set: {
+        ...stat,
+        timestamp: sql`now()`,
+      },
       target: deviceStats.deviceName,
     })
     .returning();

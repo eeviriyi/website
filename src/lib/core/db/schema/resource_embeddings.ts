@@ -14,3 +14,4 @@ export const resourceEmbeddings = pgTable(
   },
   (table) => [index("embeddingIndex").using("hnsw", table.embedding.op("vector_cosine_ops"))],
 );
+
